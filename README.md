@@ -30,7 +30,7 @@ Upload your own PDFs to unlock all these features! With Academic AI Suite, you�
 ### 🔗 Resources
 ## 📺 Demo Video
 - [Google Drive Folder](https://drive.google.com/drive/folders/1dGYyOKPZSTcMYLHpUr57heVoE06tp20B?usp=drive_link) for additional files and resources.
-- [GitHub Repository](https://github.com/your-username/academic-ai-suite) for the complete codebase and documentation.
+- [GitHub Repository]([https://github.com/your-username/academic-ai-suite](https://github.com/vsuryacharan/Anon?tab=readme-ov-file)) for the complete codebase and documentation.
 
 Clone this repo:
 
