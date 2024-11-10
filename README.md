@@ -28,6 +28,7 @@ Upload your own PDFs to unlock all these features! With Academic AI Suite, you�
 ## 🚀 Getting Started
 
 ### 🔗 Resources
+## 📺 Demo Video
 - [Google Drive Folder](https://drive.google.com/drive/folders/1dGYyOKPZSTcMYLHpUr57heVoE06tp20B?usp=drive_link) for additional files and resources.
 - [GitHub Repository](https://github.com/your-username/academic-ai-suite) for the complete codebase and documentation.
 
@@ -52,13 +53,9 @@ python manage.py runserver
 
 Open your browser and go to [http://localhost:8000](http://localhost:8000) to start exploring!
 
-## 📺 Demo Video
-Curious to see it in action? Watch our [Academic AI Suite - Demo Video](https://www.youtube.com/your-demo-link) on YouTube 🎥 and get a firsthand look at how it works!
 
 ## 🤝 Contributing
 Got ideas to make Academic AI Suite even better? We’d love to hear from you! Feel free to open issues, submit pull requests, or suggest features. Let’s build a better learning tool together!
 
-## 📄 License
-Licensed under the MIT License.
 
 Enjoy exploring your academic PDFs with the power of Generative AI! 🚀📘🔍
