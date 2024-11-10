@@ -1,4 +1,4 @@
-# 📘 Academic AI Suite
+# 📘 VedaVerse
 
 🚀 Welcome to **Academic AI Suite**! This powerful, AI-driven application is here to elevate your academic experience—especially if you’re diving deep into subjects like math, physics, and chemistry. With an array of unique tools, it allows you to explore and engage with your academic PDFs like never before. Upload a PDF, ask questions, generate quizzes, create audiobooks, and even sketch out equations. Dive in and let AI transform the way you study!
 
