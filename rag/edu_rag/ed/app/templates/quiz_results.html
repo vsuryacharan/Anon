@@ -1,0 +1,31 @@
+<!-- templates/quiz_results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Results</title>
+    <style>
+        /* Consistent styling */
+        body { font-family: Arial, sans-serif; background-color: #121212; color: #e1e1e1; text-align: center; padding: 20px; }
+        h1 { color: #d68eff; text-shadow: 0 0 8px rgba(214, 142, 255, 0.8); }
+        .result { max-width: 600px; margin: 20px auto; background-color: #1e1e1e; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); }
+        .feedback { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h2>Quiz Results</h2>
+    <p>Your Score: {{ score }} out of {{ total }}</p>
+
+    <ul>
+        {% for question, user_answer, feedback in zipped_data %}
+            <li>
+                <strong>{{ question.question }}</strong><br>
+                Your answer: {{ user_answer }} - {{ feedback }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'quiz_view' pdf_id=pdf_id %}">Try Again</a>
+</body>
+</html>

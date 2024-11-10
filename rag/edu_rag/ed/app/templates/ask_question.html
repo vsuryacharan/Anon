@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Question</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #121212; /* Dark background for dark theme */
+            padding: 20px;
+            color: #e0e0e0; /* Light text color */
+        }
+
+        h2 {
+            color: #bb86fc; /* Soft purple for the header */
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+
+        form {
+            margin-bottom: 20px;
+            background-color: rgba(30, 30, 30, 0.85); /* Dark semi-transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: #333;
+            color: #e0e0e0;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #03dac6; /* Accent color */
+            color: #121212; /* Dark text color for contrast */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #018786; /* Darker shade for hover effect */
+        }
+
+        audio {
+            display: block;
+            margin-top: 20px;
+        }
+
+        h3, h4 {
+            color: #bb86fc; /* Soft purple color for subheadings */
+        }
+
+        a {
+            color: #03dac6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    <h2>Ask a Question about "{{ pdf.title }}"</h2>
+
+    <form method="POST" action="{% url 'ask_question' pdf.id %}">
+        {% csrf_token %}
+        <input type="text" name="query" placeholder="Type your question here..." value="{{ query }}">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- PDF-to-Speech button -->
+    <form method="POST" action="{% url 'convert_pdf_to_speech' pdf.id %}">
+        {% csrf_token %}
+        <button type="submit">Convert PDF to Speech</button>
+    </form>
+
+    {% if result %}
+        <h3>Answer:</h3>
+        <p>{{ result }}</p>
+    {% endif %}
+
+    <!-- Audio Player Section -->
+    {% if audio_file %}
+        <h3>Listen to PDF Content:</h3>
+        <audio controls>
+            <source src="{{ MEDIA_URL }}{{ audio_file }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <h4>Download Audio:</h4>
+        <a href="{{ MEDIA_URL }}{{ audio_file }}" download>Download Audio File</a>
+    {% else %}
+        <h3>No audio available.</h3>
+    {% endif %}
+</body>
+</html>

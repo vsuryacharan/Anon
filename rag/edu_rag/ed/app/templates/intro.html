@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to PDF Assistant</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Dark background for better contrast */
+            color: #e1e1e1; /* Light text color */
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        /* Header Styles */
+        h1 {
+            font-size: 36px;
+            margin-top: 60px;
+            color: #d68eff; /* Vibrant purple for headers */
+            text-shadow: 0 0 8px rgba(214, 142, 255, 0.8);
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-top: 20px;
+            color: #a875ff; /* Slightly lighter purple for sub-headers */
+            text-shadow: 0 0 6px rgba(168, 117, 255, 0.6);
+        }
+
+        /* Paragraph Styles */
+        p {
+            font-size: 18px;
+            margin: 20px auto;
+            max-width: 800px;
+            line-height: 1.6;
+            color: #cfcfcf;
+        }
+
+        /* Button Styles */
+        .button, .speech-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            color: #121212;
+            background-color: #d68eff; /* Purple button background */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 12px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 0 10px rgba(214, 142, 255, 0.6); /* Purple glow effect */
+        }
+
+        /* Button Hover Effects */
+        .button:hover, .speech-button:hover {
+            background-color: #a875ff;
+            color: #fff;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        /* Special Button for Speech */
+        .speech-button {
+            background-color: #8d6aff; /* Darker purple for "Read Aloud" button */
+        }
+
+        /* Footer */
+        footer {
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+        }
+        .form{
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            color: #121212;
+            background-color: #d68eff; /* Purple button background */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 12px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 0 10px rgba(214, 142, 255, 0.6); /* Purple glow effect */
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    <!-- Content Section -->
+    <h1>Welcome to the VedaVerse</h1>
+    <h2>Your One-Stop Solution for PDF Management And learning with GenAI!</h2>
+    <p id="intro-text">
+        This application allows you to upload PDF documents, ask questions about the content, and even convert text to speech.
+        It simplifies the way you interact with your PDFs and makes information more accessible.
+    </p>
+    <p>
+        Start by uploading your first PDF document, or browse through your uploaded files!
+    </p>
+
+    <!-- Buttons Section -->
+    <a class="button" href="{% url 'upload_pdf' %}">Upload PDF</a>
+    <a class="button" href="{% url 'pdf_list' %}">View Uploaded PDFs</a>
+    <a class="button" href="{% url 'text_to_speech' pdf_id=2 %}">Convert to Speech</a> <!-- Replace '1' with the appropriate PDF ID -->
+  
+    <!-- <button class="speech-button" onclick="readAloud()">Read Aloud</button> -->
+    <form action="{% url 'open_sketchbook' %}" method="post">
+        {% csrf_token %}
+        <button a class="button" button type="submit">Open Sketchbook</button>
+    </form>
+    <form action="{% url 'upload_screenshot' %}" method="post">
+        {% csrf_token %}
+        <!-- <button a class="button" type="submit">Screenshot result</button> -->
+    </form>
+
+    <!-- JavaScript for Speech Synthesis -->
+    <script>
+        function readAloud() {
+            const text = document.getElementById('intro-text').innerText;
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>

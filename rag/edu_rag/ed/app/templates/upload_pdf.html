@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload PDF</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e1e1e1; /* Light text for readability */
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* Header Styles */
+        h1, h2 {
+            color: #d68eff; /* Purple for headers */
+            text-shadow: 0 0 8px rgba(214, 142, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Slightly lighter dark background for form */
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background-color: #292929;
+            color: #e1e1e1;
+            border: none;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            background-color: #3c3c3c;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #d68eff;
+            color: #121212;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #a875ff;
+            color: #fff;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #292929;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .navbar-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-item {
+            margin: 0 15px;
+        }
+
+        .navbar-link {
+            color: #d68eff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar-link:hover {
+            background-color: rgba(214, 142, 255, 0.2);
+            color: #ffffff;
+        }
+
+        /* Uploaded Books List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        li {
+            background-color: #1e1e1e;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #292929;
+            transform: scale(1.02);
+        }
+
+        li a {
+            color: #a875ff;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        li a:hover {
+            color: #d68eff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li class="navbar-item">
+                <a href="{% url 'home' %}" class="navbar-link">Home</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'upload_pdf' %}" class="navbar-link">Upload PDF</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'pdf_list' %}" class="navbar-link">View PDFs and ChatBot</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'text_to_speech' pdf_id=1 %}" class="navbar-link">Text to Speech</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Upload PDF</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    
+    <h2>Uploaded Books</h2>
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{{ book.pdf_file.url }}">{{ book.title }}</a> - Uploaded on {{ book.uploaded_at }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

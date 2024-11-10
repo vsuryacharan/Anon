@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sketchbook Opened</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e1e1e1;
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        /* Header Styling */
+        h1 {
+            font-size: 36px;
+            color: #d68eff;
+            text-shadow: 0 0 8px rgba(214, 142, 255, 0.8);
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+            line-height: 1.6;
+            color: #cfcfcf;
+        }
+
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #d68eff;
+            color: #121212;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 0 10px rgba(214, 142, 255, 0.6);
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #a875ff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sketchbook Application Opened</h1>
+    <p>The Sketchbook has been launched successfully on the server.</p>
+    
+    <!-- Button to Trigger Screenshot Upload -->
+    <form action="{% url 'upload_screenshot' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="button">Result</button>
+    </form>
+</body>
+</html>
